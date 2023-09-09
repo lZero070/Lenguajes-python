@@ -1,62 +1,62 @@
 from functools import reduce
 import time
-from Alphabet import Alfabeto
+from Alphabet import Alphabets
 #from Lenguaje import Lenguaje
 
-alfabetos = []
-lenguajes = []
+alphabets = []
+languages = []
 
-def crearAlfabetos(cantidad):
-    print("En este programa el elemento vacío es el #")
-    for i in range(cantidad):
-        simbolos = input(f"Ingrese los símbolos del alfabeto {i+1} separados por comas: ").split(",")
-        alfabeto = Alfabeto(simbolos)
-        alfabetos.append(alfabeto)
-    print(f"Se han creado {cantidad} alfabetos.")
+def create_alphabets(quantity):
+    print("In this program, the empty element is represented as #")
+    for i in range(quantity):
+        symbols = input(f"Enter the symbols for alphabet {i+1} separated by commas: ").split(",")
+        alphabet = Alphabets(symbols)
+        alphabets.append(alphabet) #
+    print(f"{quantity} alphabets have been created.")
     
-def mostrarAlfabetos():    
-    for i, alfabeto in enumerate(alfabetos):
-        print(f"Alfabeto {i+1}: {alfabeto.get()}")
+def show_alphabets():    
+    for i, alphabet in enumerate(alphabets):#
+        print(f"Alfabet {i+1}: {alphabet.get()}")
         
-def mostrarLenguajes():    
-    for i, lenguaje in enumerate(lenguajes):
-        print(f"Lenguaje {i+1}: {lenguaje.get()}")
+def show_languages():    
+    for i, language in enumerate(languages):
+        print(f"Lenguaje {i+1}: {language.get()}")
 
 #ingreso
-cantidadAlfabetos = int(input("Por favor, ingrese la cantidad de alfabetos a crear (mínimo dos): "))
-if cantidadAlfabetos < 2:
-    print("Recuerde que la cantidad mínima de alfabetos es dos. Por favor, elija otra cantidad.")
+quantity_alphabets = int(input("Please enter the number of alphabets to create (minimum two): "))
+if quantity_alphabets < 2:
+    print("Remember that the minimum number of alphabets is two. Please choose another quantity.")
 else:
-    crearAlfabetos(cantidadAlfabetos)   
-    mostrarAlfabetos()
-    input("Presione la tecla ENTER para continuar...")
+    create_alphabets(quantity_alphabets)   
+    show_alphabets()
+    input("Press the ENTER key to continue...")
 
-def opciones(objeto, mensaje):
-    global seleccionados
+def options(object, message):
+    global selected
     aux = False
     while not aux:
-        eleccion = input(f"Ingrese los numeros de los {mensaje} separados por comas (1-{len(objeto)}): ")
-        numeros = [int(opcion) for opcion in eleccion.split(",")]
-        if len(numeros) <= 1:
-            print(f"Debe elegir mínimo dos {mensaje}.")
+        election = input(f"Enter the numbers of the {message} separated by commas (1-{len(object)}): ")
+        numbers = [int(option) for option in election.split(",")]
+        if len(numbers) <= 1:
+            print(f"You must choose at least two {message}.")
             continue
         aux = True
-        for numero in numeros:
-            if numero < 1 or numero > len(objeto):
-                print(f"El número {numero} no es válido. Solo puede elegir números entre 1 y {len(objeto)}.")
+        for number in numbers:
+            if number < 1 or number > len(object):
+                print(f"The number {number} is not valid. You can only choose numbers between 1 and {len(object)}.")
                 aux = False
                 break;
     if aux:
-        seleccionados = [objeto[numero-1] for numero in numeros]
+        selected = [object[number-1] for number in numbers]
 
 #union
-if len(alfabetos) == 0:
-    print("Primero debe crear los alfabetos.")
+if len(alphabets) == 0:#
+    print("You must first create the alphabets.")
 else: 
-    print("¿Qué alfabetos desea unir?")
-    mostrarAlfabetos()
-    opciones(alfabetos, "alfabetos")
-    union = reduce(lambda a, b: a.union(b), seleccionados)
-    print("La union de los alfabetos seleccionados es:")
+    print("Which alphabets do you want to unite?")
+    show_alphabets()
+    options(alphabets, "alphabets")#
+    union = reduce(lambda a, b: a.union(b), selected)
+    print("The union of the selected alphabets is:")
     print(union.get())
-    input("Presione la tecla ENTER para continuar...")
+    input("Press the ENTER key to continue...")
