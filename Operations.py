@@ -15,10 +15,10 @@ class Operations:
         elements = list(set(self.elements) | set(other.elements))
         return self.category(elements)
     
-    def diferencia(self, other):
+    def difference(self, other):
         elements = list(OrderedDict.fromkeys(set(self.elements) - set(other.elements)))
         return self.category(elements)
     
-    def interseccion(self, other):
+    def intersection(self, other):
         elements = list(OrderedDict.fromkeys(set(self.elements) & set(other.elements)))
         return self.category(elements)
