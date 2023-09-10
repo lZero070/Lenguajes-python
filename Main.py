@@ -1,7 +1,7 @@
 from functools import reduce
 import time
 from Alphabet import Alphabets
-#from Lenguaje import Lenguaje
+from language import Language
 
 alphabets = []
 languages = []
@@ -60,3 +60,15 @@ else:
     print("The union of the selected alphabets is:")
     print(union.get())
     input("Press the ENTER key to continue...")
+
+#diferencia
+if len(alphabets) == 0:
+    print("Primero debe crear los alfabetos.")
+else: 
+    print("¿De qué alfabetos deseas la diferencia?")
+    show_alphabets()
+    options(alphabets, "alfabetos")
+    diferencia = reduce(lambda a, b: a.diferencia(b), selected)
+    print("La diferencia de los alfabetos seleccionados es:")
+    print(diferencia.get())
+    input("Presione la tecla ENTER para continuar...")    
