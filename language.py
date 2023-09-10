@@ -1,51 +1,51 @@
 import random
-from Operations import Operaciones
+from Operations import Operations
 
-class Lenguaje(Operaciones):
+class Language(Operations):
     
-    def _init_(self, elementos):
-        super().__init__(elementos, tipo = Lenguaje)
+    def _init_(self, elements):
+        super().__init__(elements, category = Language)
         
-    def generarPalabras(self, alfabetos, cantidadPalabras):
-        elementos = []
-        for alfabeto in alfabetos:
-            elementos += ["".join(random.choices([c for c in alfabeto.elementos if c != "#"], k=random.randint(1, 20))) for i in range(cantidadPalabras)]
-        self.elementos = elementos
+    def generateWords(self, alphabets, numberOfWords):
+        elements = []
+        for alphabet in alphabets:
+            elements += ["".join(random.choices([c for c in alphabet.elementos if c != "#"], k=random.randint(1, 20))) for i in range(numberOfWords)]
+        self.elements = elements
         
     def get(self):
-        return self.elementos
+        return self.elements
     
-    def concatenacion(self, otro):
-        conca = []
-        for palabra1 in self.elementos:
-            for palabra2 in otro.elementos:
-                conca.append(palabra1 + palabra2)      
-        return Lenguaje(conca)
+    def concatenation(self, other):
+        result = []
+        for word1 in self.elements:
+            for word2 in other.elements:
+                result.append(word1 + word2)      
+        return Language(result,category=Language)
     
-    def potencia(self, pot):
-        poten = set("")
-        if(pot == 0):
+    def power(self, exponent):
+        powerset = set("")
+        if(exponent == 0):
             return []
-        elif(pot == 1):
-            for palabra in self.elementos:
-                poten.add(palabra)
+        elif(exponent == 1):
+            for word in self.elements:
+                powerset.add(word)
         else:      
-            for palabra1 in self.elementos:
-                for palabra2 in self.potencia(pot-1):
-                    poten.add(palabra2)
-                    poten.add(palabra1 + palabra2)
-        return poten
+            for word1 in self.elements:
+                for word2 in self.power(exponent-1):
+                    powerset.add(word2)
+                    powerset.add(word1 + word2)
+        return powerset
         
-    def inversa(self):
-        inver = []
-        for palabra in self.elementos:
-            aux = list(palabra)
+    def inverse(self):
+        inverselist = []
+        for word in self.elements:
+            aux = list(word)
             aux.reverse()
-            inver.append("".join(aux))
-        return Lenguaje(inver)
+            inverselist.append("".join(aux))
+        return Language(inverselist,category = Language)
     
-    def cardinalidad(self):
-        return len(self.elementos)
+    def cardinality(self):
+        return len(self.elements)
     
     def _str_(self):
-        return f"{', '.join(self.elementos)}"
+        return f"{', '.join(self.elements)}"
