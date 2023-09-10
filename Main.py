@@ -63,12 +63,24 @@ else:
 
 #diferencia
 if len(alphabets) == 0:
-    print("Primero debe crear los alfabetos.")
+    print("You must first create the alphabets.")
 else: 
-    print("¿De qué alfabetos deseas la diferencia?")
+    print("What alphabets do you want the difference?")
     show_alphabets()
-    options(alphabets, "alfabetos")
-    diferencia = reduce(lambda a, b: a.diferencia(b), selected)
-    print("La diferencia de los alfabetos seleccionados es:")
-    print(diferencia.get())
-    input("Presione la tecla ENTER para continuar...")    
+    options(alphabets, "alphabets")
+    difference = reduce(lambda a, b: a.difference(b), selected)
+    print("The difference of the selected alphabets is:")
+    print(difference.get())
+    input("Press the ENTER key to continue...")   
+
+#Intercepcion
+if len(alphabets) == 0:
+    print("You must first create the alphabets.")
+else: 
+    print("What alphabets do you want the interception")
+    show_alphabets()
+    options(alphabets, "alphabets")
+    intersection = reduce(lambda a, b: a.intersection(b), selected)
+    print("The interception of the selected alphabets is:")
+    print(intersection.get())
+    input("Press the ENTER key to continue...")   
