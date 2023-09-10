@@ -4,45 +4,45 @@ from Operations import Operations
 class Language(Operations):
     
     def _init_(self, elements):
-        super().__init__(elements, category = Language)
+        super().__init__(elements, tipo = Language)
         
-    def generateWords(self, alphabets, numberOfWords):
+    def generatewords(self, alphabets, quantitywords):
         elements = []
         for alphabet in alphabets:
-            elements += ["".join(random.choices([c for c in alphabet.elementos if c != "#"], k=random.randint(1, 20))) for i in range(numberOfWords)]
+            elements += ["".join(random.choices([c for c in alphabet.elements if c != "#"], k=random.randint(1, 20))) for i in range(quantitywords)]
         self.elements = elements
         
     def get(self):
         return self.elements
     
     def concatenation(self, other):
-        result = []
+        concatenate = []
         for word1 in self.elements:
             for word2 in other.elements:
-                result.append(word1 + word2)      
-        return Language(result,category=Language)
+                concatenate.append(word1 + word2)      
+        return Language(concatenate)
     
-    def power(self, exponent):
-        powerset = set("")
-        if(exponent == 0):
+    def languagepotency(self, pot):
+        potency = set("")
+        if(pot == 0):
             return []
-        elif(exponent == 1):
+        elif(pot == 1):
             for word in self.elements:
-                powerset.add(word)
+                potency.add(word)
         else:      
             for word1 in self.elements:
-                for word2 in self.power(exponent-1):
-                    powerset.add(word2)
-                    powerset.add(word1 + word2)
-        return powerset
+                for word2 in self.potencia(pot-1):
+                    potency.add(word2)
+                    potency.add(word1 + word2)
+        return potency
         
-    def inverse(self):
-        inverselist = []
+    def invert(self):
+        revers = []
         for word in self.elements:
             aux = list(word)
             aux.reverse()
-            inverselist.append("".join(aux))
-        return Language(inverselist,category = Language)
+            revers.append("".join(aux))
+        return Language(revers)
     
     def cardinality(self):
         return len(self.elements)
