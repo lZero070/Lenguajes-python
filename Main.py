@@ -1,7 +1,7 @@
 from functools import reduce
 import time
 from Alphabet import Alphabets
-from Language import Language
+from language import Language
 
 alphabets = []
 languages = []
