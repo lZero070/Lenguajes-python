@@ -3,7 +3,7 @@ from Operations import Operations
 
 class Language(Operations):
     
-    def _init_(self, elements):
+    def __init__(self, elements):
         super().__init__(elements, tipo = Language)
         
     def generatewords(self, alphabets, quantitywords):

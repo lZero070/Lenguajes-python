@@ -8,7 +8,7 @@ class Alphabets(Operations):
                 
     def get(self):
         return self.elements
-    
+
     def kleene_closure(self, n_words):
         words = set()
         words.add("#")   

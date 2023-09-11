@@ -1,7 +1,7 @@
 from functools import reduce
 import time
 from Alphabet import Alphabets
-from language import Language
+from Language import Language
 
 alphabets = []
 languages = []
@@ -49,6 +49,41 @@ def options(object, message):
     if aux:
         selected = [object[number-1] for number in numbers]
 
+
+def options2():
+    global alfabetosSeleccionados2
+    aux = True
+    while aux:
+        eleccion = input(f"Ingrese los numeros de dos alfabetos separados por comas para utilizarlos para la creación de los dos lenguajes correspondientes (1-{len(alphabets)}): ")
+        numeros = [int(opcion) for opcion in eleccion.split(",")]
+        if len(numeros) <= 1 or len(numeros) > 2:
+            print("Debe elegir dos alfabetos.")
+            continue
+        valido = True
+        for numero in numeros:
+            if numero < 1 or numero > len(alphabets):
+                print(f"El número {numero} no es válido. Solo puede elegir números entre 1 y {len(alphabets)}.")
+                valido = False
+                break;       
+        if valido:
+            alfabetosSeleccionados2 = [alphabets[numero-1] for numero in numeros]
+            break;
+
+
+def crearLenguajes():
+    l1 = Language([])
+    l2 = Language([])
+    show_alphabets()
+    options2()
+    cantidadl1 = int(input("Ingrese la cantidad de palabras que quiere que contenga el primer lenguaje: "))
+    cantidadl2 = int(input("Ingrese la cantidad de palabras que quiere que contenga el segundo lenguaje: "))
+    l1.generatewords([alfabetosSeleccionados2[0]], cantidadl1)
+    l2.generatewords([alfabetosSeleccionados2[1]], cantidadl2)
+    languages.append(l1)
+    languages.append(l2)
+    show_languages()
+    print(f"Se han creado correctamente los dos lenguajes.")
+    
 #union
 if len(alphabets) == 0:#
     print("You must first create the alphabets.")
@@ -61,6 +96,7 @@ else:
     print(union.get())
     input("Press the ENTER key to continue...")
 
+print("\n")
 #diferencia
 if len(alphabets) == 0:
     print("You must first create the alphabets.")
@@ -73,6 +109,7 @@ else:
     print(difference.get())
     input("Press the ENTER key to continue...")   
 
+print("\n")
 #Intercepcion
 if len(alphabets) == 0:
     print("You must first create the alphabets.")
@@ -83,4 +120,30 @@ else:
     intersection = reduce(lambda a, b: a.intersection(b), selected)
     print("The interception of the selected alphabets is:")
     print(intersection.get())
-    input("Press the ENTER key to continue...")   
+    input("Press the ENTER key to continue...")
+
+print("\n")
+#Cerradure estrella
+if len(alphabets) == 0:
+    print("Primero debe crear los alfabetos.")
+else: 
+    print("¿De qué alfabeto desea la cerradura de estrellas?")
+    show_alphabets()
+    opcion = int(input(f"Ingrese el número del alfabeto entre 1 y {len(alphabets)}: "))
+    while opcion < 1 or opcion > len(alphabets):
+        print(f"El número {opcion} no es válido. Solo puede elegir números entre 1 y {len(alphabets)}.")
+        opcion = int(input(f"Ingrese el número del alfabeto entre 1 y {len(alphabets)}: ")) 
+    cantidad = int(input("¿Qué cantidad de palabras quiere que haya?: "))
+    print(alphabets[opcion - 1].kleene_closure(cantidad).get())
+    input("Presione la tecla ENTER para continuar...")
+
+print("\n")
+print("Language")
+print("\n")
+
+#creacion de lenguajes
+if len(alphabets) == 0:
+    print("Primero debe crear los alfabetos para poder generar los lenguajes.")
+else:
+    crearLenguajes()
+    input("Presione la tecla ENTER para continuar...")
