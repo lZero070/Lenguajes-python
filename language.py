@@ -1,51 +1,51 @@
 import random
-from Operations import Operations
+from Operations import Operaciones
 
-class Language(Operations):
+class Lenguaje(Operaciones):
     
-    def __init__(self, elements):
-        super().__init__(elements, tipo = Language)
+    def __init__(self, elementos):
+        super().__init__(elementos, tipo = Lenguaje)
         
-    def generatewords(self, alphabets, quantitywords):
-        elements = []
-        for alphabet in alphabets:
-            elements += ["".join(random.choices([c for c in alphabet.elements if c != "#"], k=random.randint(1, 20))) for i in range(quantitywords)]
-        self.elements = elements
+    def generarPalabras(self, alfabetos, cantidadPalabras):
+        elementos = []
+        for alfabeto in alfabetos:
+            elementos += ["".join(random.choices([c for c in alfabeto.elementos if c != "#"], k=random.randint(1, 20))) for i in range(cantidadPalabras)]
+        self.elementos = elementos
         
     def get(self):
-        return self.elements
+        return self.elementos
     
-    def concatenation(self, other):
-        concatenate = []
-        for word1 in self.elements:
-            for word2 in other.elements:
-                concatenate.append(word1 + word2)      
-        return Language(concatenate)
+    def concatenacion(self, otro):
+        conca = []
+        for palabra1 in self.elementos:
+            for palabra2 in otro.elementos:
+                conca.append(palabra1 + palabra2)      
+        return Lenguaje(conca)
     
-    def languagepotency(self, pot):
-        potency = set("")
+    def potencia(self, pot):
+        poten = set("")
         if(pot == 0):
             return []
         elif(pot == 1):
-            for word in self.elements:
-                potency.add(word)
+            for palabra in self.elementos:
+                poten.add(palabra)
         else:      
-            for word1 in self.elements:
-                for word2 in self.potencia(pot-1):
-                    potency.add(word2)
-                    potency.add(word1 + word2)
-        return potency
+            for palabra1 in self.elementos:
+                for palabra2 in self.potencia(pot-1):
+                    poten.add(palabra2)
+                    poten.add(palabra1 + palabra2)
+        return poten
         
-    def invert(self):
-        revers = []
-        for word in self.elements:
-            aux = list(word)
+    def inversa(self):
+        inver = []
+        for palabra in self.elementos:
+            aux = list(palabra)
             aux.reverse()
-            revers.append("".join(aux))
-        return Language(revers)
+            inver.append("".join(aux))
+        return Lenguaje(inver)
     
-    def cardinality(self):
-        return len(self.elements)
+    def cardinalidad(self):
+        return len(self.elementos)
     
-    def _str_(self):
-        return f"{', '.join(self.elements)}"
+    def __str__(self):
+        return f"{', '.join(self.elementos)}"

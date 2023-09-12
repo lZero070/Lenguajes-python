@@ -1,24 +1,24 @@
 from collections import OrderedDict
 
 
-class Operations:
+class Operaciones:
     
-    def __init__(self, elements, category):
-        self.elements = elements
-        self.category = category
+    def __init__(self, elementos, tipo):
+        self.elementos = elementos
+        self.tipo = tipo
     
     def __str__(self):
-        return f"{','.join(self.elements)}"
+        return f"{','.join(self.elementos)}"
     
     
-    def union(self, other):
-        elements = list(set(self.elements) | set(other.elements))
-        return self.category(elements)
+    def union(self, otro):
+        elementos = list(set(self.elementos) | set(otro.elementos))
+        return self.tipo(elementos)
     
-    def difference(self, other):
-        elements = list(OrderedDict.fromkeys(set(self.elements) - set(other.elements)))
-        return self.category(elements)
+    def diferencia(self, otro):
+        elementos = list(OrderedDict.fromkeys(set(self.elementos) - set(otro.elementos)))
+        return self.tipo(elementos)
     
-    def intersection(self, other):
-        elements = list(OrderedDict.fromkeys(set(self.elements) & set(other.elements)))
-        return self.category(elements)
+    def interseccion(self, otro):
+        elementos = list(OrderedDict.fromkeys(set(self.elementos) & set(otro.elementos)))
+        return self.tipo(elementos)

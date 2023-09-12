@@ -1,23 +1,23 @@
 import random
-from Operations import Operations
+from Operations import Operaciones
 
-class Alphabets(Operations):
+class Alfabeto(Operaciones):
     
-    def __init__(self, symbols):
-        super().__init__(symbols, category = Alphabets)
+    def __init__(self, simbolos):
+        super().__init__(simbolos, tipo = Alfabeto)
                 
     def get(self):
-        return self.elements
-
-    def kleene_closure(self, n_words):
-        words = set()
-        words.add("#")   
-        while(len(words) - 1 != n_words):
-            quantity_R = random.randint(1, 20)
-            random_word = "".join(random.choices(self.elements, k= quantity_R))
-            if "#" not in random_word:
-                words.add(random_word)
-        return Alphabets(words)
+        return self.elementos
+    
+    def cerraduraEstrellas(self, nPalabras):
+        palabras = set()
+        palabras.add("#")   
+        while(len(palabras) - 1 != nPalabras):
+            cantR = random.randint(1, 20)
+            palabraAleatoria = "".join(random.choices(self.elementos, k= cantR))
+            if "#" not in palabraAleatoria:
+                palabras.add(palabraAleatoria)
+        return Alfabeto(palabras)
         
     def __str__(self):
-        return f"{','.join(self.elements)}"
+        return f"{','.join(self.elementos)}"
