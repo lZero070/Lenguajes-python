@@ -50,23 +50,23 @@ def options(object, message):
         selected = [object[number-1] for number in numbers]
 
 
-def options2():
-    global alfabetosSeleccionados2
+def options_2():
+    global alphabet_selected_2
     aux = True
     while aux:
-        eleccion = input(f"Ingrese los numeros de dos alfabetos separados por comas para utilizarlos para la creación de los dos lenguajes correspondientes (1-{len(alphabets)}): ")
-        numeros = [int(opcion) for opcion in eleccion.split(",")]
-        if len(numeros) <= 1 or len(numeros) > 2:
+        selection = input(f"Ingrese los numbers de dos alfabetos separados por comas para utilizarlos para la creación de los dos languages correspondientes (1-{len(alphabets)}): ")
+        numbers = [int(option) for option in selection.split(",")]
+        if len(numbers) <= 1 or len(numbers) > 2:
             print("Debe elegir dos alfabetos.")
             continue
-        valido = True
-        for numero in numeros:
-            if numero < 1 or numero > len(alphabets):
-                print(f"El número {numero} no es válido. Solo puede elegir números entre 1 y {len(alphabets)}.")
-                valido = False
+        valid = True
+        for number in numbers:
+            if number < 1 or number > len(alphabets):
+                print(f"El número {number} no es válido. Solo puede elegir números entre 1 y {len(alphabets)}.")
+                valid = False
                 break;       
-        if valido:
-            alfabetosSeleccionados2 = [alphabets[numero-1] for numero in numeros]
+        if valid:
+            alphabet_selected_2 = [alphabets[number-1] for number in numbers]
             break;
 
 
@@ -74,15 +74,15 @@ def crearLenguajes():
     l1 = Language([])
     l2 = Language([])
     show_alphabets()
-    options2()
-    cantidadl1 = int(input("Ingrese la cantidad de palabras que quiere que contenga el primer lenguaje: "))
-    cantidadl2 = int(input("Ingrese la cantidad de palabras que quiere que contenga el segundo lenguaje: "))
-    l1.generatewords([alfabetosSeleccionados2[0]], cantidadl1)
-    l2.generatewords([alfabetosSeleccionados2[1]], cantidadl2)
+    options_2()
+    quantity_l1 = int(input("Ingrese la cantidad de palabras que quiere que contenga el primer lenguaje: "))
+    quantity_l2 = int(input("Ingrese la cantidad de palabras que quiere que contenga el segundo lenguaje: "))
+    l1.generate([alphabet_selected_2[0]], quantity_l1)
+    l2.generate([alphabet_selected_2[1]], quantity_l2)
     languages.append(l1)
     languages.append(l2)
     show_languages()
-    print(f"Se han creado correctamente los dos lenguajes.")
+    print(f"Se han creado correctamente los dos languages.")
     
 #union
 if len(alphabets) == 0:#
@@ -97,7 +97,7 @@ else:
     input("Press the ENTER key to continue...")
 
 print("\n")
-#diferencia
+#difference
 if len(alphabets) == 0:
     print("You must first create the alphabets.")
 else: 
@@ -129,21 +129,117 @@ if len(alphabets) == 0:
 else: 
     print("¿De qué alfabeto desea la cerradura de estrellas?")
     show_alphabets()
-    opcion = int(input(f"Ingrese el número del alfabeto entre 1 y {len(alphabets)}: "))
-    while opcion < 1 or opcion > len(alphabets):
-        print(f"El número {opcion} no es válido. Solo puede elegir números entre 1 y {len(alphabets)}.")
-        opcion = int(input(f"Ingrese el número del alfabeto entre 1 y {len(alphabets)}: ")) 
+    option = int(input(f"Ingrese el número del alfabeto entre 1 y {len(alphabets)}: "))
+    while option < 1 or option > len(alphabets):
+        print(f"El número {option} no es válido. Solo puede elegir números entre 1 y {len(alphabets)}.")
+        option = int(input(f"Ingrese el número del alfabeto entre 1 y {len(alphabets)}: ")) 
     cantidad = int(input("¿Qué cantidad de palabras quiere que haya?: "))
-    print(alphabets[opcion - 1].kleene_closure(cantidad).get())
+    print(alphabets[option - 1].kleene_closure(cantidad).get())
     input("Presione la tecla ENTER para continuar...")
 
 print("\n")
 print("Language")
 print("\n")
 
-#creacion de lenguajes
+#creacion de languages
 if len(alphabets) == 0:
-    print("Primero debe crear los alfabetos para poder generar los lenguajes.")
+    print("Primero debe crear los alfabetos para poder generar los languages.")
 else:
     crearLenguajes()
     input("Presione la tecla ENTER para continuar...")
+
+#union lenguaje
+if len(languages) == 0:
+    print("Primero debe crear los languages.")
+else:
+    print("unión de languages")
+    show_languages()
+    options(languages, "languages")
+    union = selected[0].union(selected[1])
+    print("La unión de los languages es:")
+    print(union.get())
+    input("Presione la tecla ENTER para continuar...")
+        
+
+#difference lenguaje
+if len(languages) == 0:
+    print("Primero debe crear los languages.")
+else:
+    print("Diferencia de languages")
+    show_languages()
+    options(languages, "languages")
+    difference = selected[0].difference(selected[1])
+    print("La difference de los languages es:")
+    print(difference.get())
+    input("Presione la tecla ENTER para continuar...")
+
+
+#nterseccion lenguaje
+if len(languages) == 0:
+    print("Primero debe crear los languages.")
+else:
+    print("Interseccion de languages")
+    show_languages()
+    options(languages, "languages")
+    intersection = selected[0].intersection(selected[1])
+    print("La intersection de los languages es:")
+    print(intersection.get())
+    input("Presione la tecla ENTER para continuar...")
+
+
+#concatenation
+if len(languages) == 0:
+    print("Primero debe crear los languages.")
+else:
+    print("concatenation de languages")
+    show_languages()
+    options(languages, "languages")
+    print("La concatenation de los languages es:")
+    print(selected[0].concatenation(selected[1]))
+    input("Presione la tecla ENTER para continuar...")
+
+
+#languagepotency
+if len(languages) == 0:
+    print("Primero debe crear los languages.")
+else: 
+    print("¿A qué lenguaje le deseas aplicar la potencia?")
+    show_languages()
+    option = int(input(f"Ingrese el número del lenguaje entre 1 y 2: "))
+    while option < 1 or option > 2:
+        print(f"El número {option} no es válido. Solo puede elegir números entre 1 y 2.")
+        option = int(input(f"Ingrese el número del lenguaje entre 1 y 2: ")) 
+    cantidad = int(input("Ingrese el valor de la potencia: "))
+    print(languages[option - 1].language_potency(cantidad))
+    input("Presione la tecla ENTER para continuar...")
+
+
+#invert
+if len(languages) == 0:
+    print("Primero debe crear los languages.")
+else: 
+    print("¿A qué lenguaje le deseas aplicar la invert?")
+    show_languages()
+    option = int(input(f"Ingrese el número del lenguaje entre 1 y 2: "))
+    while option < 1 or option > 2:
+        print(f"El número {option} no es válido. Solo puede elegir números entre 1 y 2.")
+        option = int(input(f"Ingrese el número del lenguaje entre 1 y 2: ")) 
+    print(f"La invert del lenguaje {option} es: ")
+    print(languages[option - 1].invert().get())
+    input("Presione la tecla ENTER para continuar...")
+
+
+#cardinality
+if len(languages) == 0:
+    print("Primero debe crear los languages.")
+else: 
+    print("¿De qué lenguaje quieres obtener su cardinality?")
+    show_languages()
+    option = int(input(f"Ingrese el número del lenguaje entre 1 y 2: "))
+    while option < 1 or option > 2:
+        print(f"El número {option} no es válido. Solo puede elegir números entre 1 y 2.")
+        option = int(input(f"Ingrese el número del lenguaje entre 1 y 2: ")) 
+    print(f"La cardinality del lenguaje {option} es: ")
+    print(languages[option - 1].cardinality())
+    input("Presione la tecla ENTER para continuar...")
+

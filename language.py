@@ -4,9 +4,9 @@ from Operations import Operations
 class Language(Operations):
     
     def __init__(self, elements):
-        super().__init__(elements, tipo = Language)
+        super().__init__(elements, category = Language)
         
-    def generatewords(self, alphabets, quantitywords):
+    def generate(self, alphabets, quantitywords):
         elements = []
         for alphabet in alphabets:
             elements += ["".join(random.choices([c for c in alphabet.elements if c != "#"], k=random.randint(1, 20))) for i in range(quantitywords)]
