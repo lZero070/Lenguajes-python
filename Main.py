@@ -70,7 +70,7 @@ def options_2():
             break;
 
 
-def crearLenguajes():
+def creationLanguages():
     l1 = Language([])
     l2 = Language([])
     show_alphabets()
@@ -145,7 +145,7 @@ print("\n")
 if len(alphabets) == 0:
     print("Primero debe crear los alfabetos para poder generar los languages.")
 else:
-    crearLenguajes()
+    creationLanguages()
     input("Presione la tecla ENTER para continuar...")
 
 #union lenguaje
