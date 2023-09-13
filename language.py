@@ -22,7 +22,7 @@ class Language(Operations):
                 concatenate.append(word1 + word2)      
         return Language(concatenate)
     
-    def languagepotency(self, pot):
+    def potency(self, pot):
         potency = set("")
         if(pot == 0):
             return []
@@ -31,7 +31,7 @@ class Language(Operations):
                 potency.add(word)
         else:      
             for word1 in self.elements:
-                for word2 in self.potencia(pot-1):
+                for word2 in self.potency(pot-1):
                     potency.add(word2)
                     potency.add(word1 + word2)
         return potency

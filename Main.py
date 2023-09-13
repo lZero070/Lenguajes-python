@@ -210,7 +210,7 @@ else:
         print(f"El número {option} no es válido. Solo puede elegir números entre 1 y 2.")
         option = int(input(f"Ingrese el número del lenguaje entre 1 y 2: ")) 
     cantidad = int(input("Ingrese el valor de la potencia: "))
-    print(languages[option - 1].language_potency(cantidad))
+    print(languages[option - 1].potency(cantidad))
     input("Presione la tecla ENTER para continuar...")
 
 
