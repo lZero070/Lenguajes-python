@@ -1,5 +1,5 @@
 from functools import reduce
-import time
+
 from Alphabet import Alphabets
 from language import Language
 
@@ -83,7 +83,9 @@ def creationLanguages():
     languages.append(l2)
     show_languages()
     print(f"Both languages have been successfully created.")
-    
+
+print("\n")
+
 #union
 if len(alphabets) == 0:#
     print("You must first create the alphabets.")
@@ -148,6 +150,8 @@ else:
     creationLanguages()
     input("Press the ENTER key to continue.")
 
+print("\n")
+
 #union lenguaje
 if len(languages) == 0:
     print("First you must create the languages.")
@@ -159,7 +163,8 @@ else:
     print("The union of the languages is:")
     print(union.get())
     input("Press the ENTER key to continue.")
-        
+
+print("\n")
 
 #difference lenguaje
 if len(languages) == 0:
@@ -173,6 +178,7 @@ else:
     print(difference.get())
     input("Press the ENTER key to continue.")
 
+print("\n")
 
 #nterseccion lenguaje
 if len(languages) == 0:
@@ -186,6 +192,7 @@ else:
     print(intersection.get())
     input("Press the ENTER key to continue.")
 
+print("\n")
 
 #concatenation
 if len(languages) == 0:
@@ -198,6 +205,7 @@ else:
     print(selected[0].concatenation(selected[1]))
     input("Press the ENTER key to continue.")
 
+print("\n")
 
 #languagepotency
 if len(languages) == 0:
@@ -213,6 +221,7 @@ else:
     print(languages[option - 1].potency(cantidad))
     input("Press the ENTER key to continue.")
 
+print("\n")
 
 #invert
 if len(languages) == 0:
@@ -228,6 +237,7 @@ else:
     print(languages[option - 1].invert().get())
     input("Press the ENTER key to continue.")
 
+print("\n")
 
 #cardinality
 if len(languages) == 0:
